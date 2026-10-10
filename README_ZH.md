@@ -68,6 +68,18 @@
       <a href="boards/esp32_s3_touch_lcd_7/">板卡定义</a> · <a href="https://docs.waveshare.com/ESP32-S3-Touch-LCD-7">产品文档</a>
     </td>
   </tr>
+  <tr>
+    <td align="center" valign="middle" width="180">
+      <a href="https://docs.waveshare.com/ESP32-S3-LR1121-OLED-1.54">
+        <img src="https://raw.githubusercontent.com/waveshareteam/esp32-s3-lr1121-oled-1.54/main/assets/ESP32-S3-LR1121-OLED-1.54-DocHeader-1.webp"
+        alt="ESP32-S3-LR1121-OLED-1.54-XF 开发板产品图" width="160">
+      </a>
+    </td>
+    <td valign="middle" width="600">
+      <p><strong>ESP32-S3-LR1121-OLED-1.54-XF</strong></p>
+      <a href="boards/esp32_s3_lr1121_oled_1_54_xf/">板卡定义</a> · <a href="https://docs.waveshare.com/ESP32-S3-LR1121-OLED-1.54">产品文档</a>
+    </td>
+  </tr>
 </table>
 
 <details>
@@ -79,6 +91,7 @@
 <!-- BEGIN SUPPORTED_BOARDS -->
 | 开发板 | 芯片 | 设备定义 | 外设定义 |
 | --- | --- | --- | --- |
+| [`esp32_s3_lr1121_oled_1_54_xf`](boards/esp32_s3_lr1121_oled_1_54_xf/) | ESP32-S3 | `button_boot`, `button_power`, `button_menu`, `button_ptt`, `button_rtc_irq`, `radio`, `oled`, `rtc`, `battery`, `audio`, `sdcard` | `i2c_main`, `spi_radio`, `gpio_boot`, `gpio_power`, `gpio_menu`, `gpio_ptt`, `gpio_rtc_irq`, `gpio_amplifier`, `gpio_radio_cs`, `gpio_radio_irq`, `gpio_radio_reset`, `gpio_radio_busy`, `i2s_speaker`, `i2s_microphone` |
 | [`esp32_s3_touch_amoled_1_75c`](boards/esp32_s3_touch_amoled_1_75c/) | ESP32-S3 | `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
 | [`esp32_s3_touch_amoled_1_8`](boards/esp32_s3_touch_amoled_1_8/) | ESP32-S3 | `gpio_expander`, `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch`, `fs_sdcard` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
 | [`esp32_s3_touch_amoled_2_16`](boards/esp32_s3_touch_amoled_2_16/) | ESP32-S3 | `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch`, `fs_sdcard` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
@@ -89,6 +102,9 @@
 
 板卡定义统一放在 `boards/<完整型号>/`。新增的三个 AMOLED 型号来自 Espressif Brookesia，
 详见[硬件版本与迁移说明](docs/BOARDS_ZH.md)。CI 校验生成与编译，实机运行效果需要单独测试。
+
+LR1121 OLED XF 配置提供硬件定义，自定义设备需要应用侧适配代码，详见
+[支持范围](docs/BOARDS_ZH.md#lr1121-oled-154-xf-定义范围)。
 
 <a id="quick-start"></a>
 

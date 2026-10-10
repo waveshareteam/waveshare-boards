@@ -15,8 +15,8 @@ published versions satisfying the range are tested, with duplicates removed.
 Registry lookup failures fail the job. Each matrix entry records an exact version.
 
 The initial Board Manager floor is **0.7.2**, matching the reference board-pack
-template. The current floor and latest resolve to the same version, giving eight
-board builds across the two IDF lines. Keep the floor until a deliberate
+template. Five board profiles are discovered. Each resolved Board Manager version
+adds ten builds across the two IDF lines. Keep the floor until a deliberate
 compatibility change is tested. Unsupported catalog profiles or generation failures fail CI; they are
 not counted as successful builds.
 
