@@ -1,0 +1,125 @@
+devices:
+- name: button_boot
+  type: button
+  sub_type: gpio
+  init_skip: true
+  config:
+    active_level: 0
+  peripherals:
+  - gpio_name: gpio_boot
+- name: button_power
+  type: button
+  sub_type: gpio
+  init_skip: true
+  config:
+    active_level: 0
+    disable_pull: true
+  peripherals:
+  - gpio_name: gpio_power
+- name: button_menu
+  type: button
+  sub_type: gpio
+  init_skip: true
+  config:
+    active_level: 0
+  peripherals:
+  - gpio_name: gpio_menu
+- name: button_ptt
+  type: button
+  sub_type: gpio
+  init_skip: true
+  config:
+    active_level: 0
+  peripherals:
+  - gpio_name: gpio_ptt
+- name: button_rtc_irq
+  type: button
+  sub_type: gpio
+  init_skip: true
+  config:
+    active_level: 0
+  peripherals:
+  - gpio_name: gpio_rtc_irq
+- name: radio
+  type: custom
+  chip: lr1121
+  init_skip: true
+  config:
+    clock_hz: 8000000
+    mode: 0
+    queue_size: 1
+  peripherals:
+  - name: spi_radio
+  - name: gpio_radio_cs
+  - name: gpio_radio_irq
+  - name: gpio_radio_reset
+- name: oled
+  type: custom
+  chip: ssd1309
+  init_skip: true
+  config:
+    address: 60
+    clock_hz: 400000
+    width: 128
+    height: 64
+    bits_per_pixel: 1
+    reset_gpio: -1
+    rotation: 0
+    num_fbs: 1
+    invert_color: false
+    control_phase_bytes: 1
+    dc_bit_offset: 6
+    cmd_bits: 8
+    param_bits: 8
+  peripherals:
+  - name: i2c_main
+- name: rtc
+  type: custom
+  chip: pcf85063a
+  init_skip: true
+  config:
+    address: 81
+  peripherals:
+  - name: i2c_main
+- name: battery
+  type: custom
+  chip: bq27220
+  init_skip: true
+  config:
+    address: 85
+    clock_hz: 100000
+    charge_threshold_ma: 20
+  peripherals:
+  - name: i2c_main
+- name: audio
+  type: custom
+  chip: es8311_es7210
+  init_skip: true
+  config:
+    speaker_address: 24
+    microphone_address: 64
+    sample_rate: 16000
+  peripherals:
+  - name: i2c_main
+  - name: i2s_speaker
+  - name: i2s_microphone
+  - name: gpio_amplifier
+- name: sdcard
+  type: fs_fat
+  sub_type: sdmmc
+  init_skip: true
+  config:
+    mount_point: /sdcard
+    vfs_config:
+      format_if_mount_failed: false
+      max_files: 5
+      allocation_unit_size: 16384
+    sub_config:
+      slot: SDMMC_HOST_SLOT_1
+      frequency: SDMMC_FREQ_DEFAULT
+      bus_width: 1
+      slot_flags: SDMMC_SLOT_FLAG_INTERNAL_PULLUP
+      pins:
+        clk: 12
+        cmd: 10
+        d0: 11

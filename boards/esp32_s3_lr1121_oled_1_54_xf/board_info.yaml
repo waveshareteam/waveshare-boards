@@ -1,0 +1,5 @@
+board: esp32_s3_lr1121_oled_1_54_xf
+chip: esp32s3
+version: 1.0.0
+description: Waveshare ESP32-S3-LR1121-OLED-1.54-XF common digital board
+manufacturer: Waveshare

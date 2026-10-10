@@ -1,0 +1,124 @@
+peripherals:
+- name: i2c_main
+  type: i2c
+  config:
+    port: 0
+    pins:
+      sda: 13
+      scl: 14
+    enable_internal_pullup: true
+    glitch_count: 7
+- name: spi_radio
+  type: spi
+  config:
+    spi_bus_config:
+      spi_port: SPI3_HOST
+      mosi_io_num: 45
+      miso_io_num: 46
+      sclk_io_num: 40
+      max_transfer_sz: 4092
+- name: gpio_boot
+  type: gpio
+  config:
+    pin: 0
+    mode: GPIO_MODE_INPUT
+    pull_up: true
+    default_level: 0
+- name: gpio_power
+  type: gpio
+  config:
+    pin: 4
+    mode: GPIO_MODE_INPUT
+    pull_up: false
+    default_level: 0
+- name: gpio_menu
+  type: gpio
+  config:
+    pin: 5
+    mode: GPIO_MODE_INPUT
+    pull_up: true
+    default_level: 0
+- name: gpio_ptt
+  type: gpio
+  config:
+    pin: 6
+    mode: GPIO_MODE_INPUT
+    pull_up: true
+    default_level: 0
+- name: gpio_rtc_irq
+  type: gpio
+  config:
+    pin: 7
+    mode: GPIO_MODE_INPUT
+    pull_up: true
+    default_level: 0
+- name: gpio_amplifier
+  type: gpio
+  config:
+    pin: 8
+    mode: GPIO_MODE_OUTPUT
+    pull_up: false
+    default_level: 0
+- name: gpio_radio_cs
+  type: gpio
+  config:
+    pin: 42
+    mode: GPIO_MODE_OUTPUT
+    pull_up: false
+    default_level: 1
+- name: gpio_radio_irq
+  type: gpio
+  config:
+    pin: 38
+    mode: GPIO_MODE_INPUT
+    pull_up: false
+    default_level: 0
+- name: gpio_radio_reset
+  type: gpio
+  config:
+    pin: 39
+    mode: GPIO_MODE_OUTPUT
+    pull_up: false
+    default_level: 1
+- name: gpio_radio_busy
+  type: gpio
+  config:
+    pin: 41
+    mode: GPIO_MODE_INPUT
+    pull_up: false
+    default_level: 0
+- name: i2s_speaker
+  type: i2s
+  role: master
+  format: std-out
+  config:
+    port: 0
+    sample_rate_hz: 16000
+    data_bit_width: 16
+    slot_mode: I2S_SLOT_MODE_MONO
+    slot_mask: I2S_STD_SLOT_LEFT
+    pins:
+      mclk: 17
+      bclk: 18
+      ws: 21
+      dout: 16
+      din: -1
+- name: i2s_microphone
+  type: i2s
+  role: master
+  format: tdm-in
+  config:
+    port: 0
+    sample_rate_hz: 16000
+    data_bit_width: 16
+    slot_mode: I2S_SLOT_MODE_STEREO
+    slot_mask: I2S_TDM_SLOT0 | I2S_TDM_SLOT1 | I2S_TDM_SLOT2 | I2S_TDM_SLOT3
+    pins:
+      mclk: 17
+      bclk: 18
+      ws: 21
+      dout: -1
+      din: 15
+    total_slot: 4
+    ws_width: 0
+    left_align: false

@@ -69,6 +69,19 @@ bilingual documentation, and generation/build checks.
       <a href="boards/esp32_s3_touch_lcd_7/">Board definition</a> · <a href="https://docs.waveshare.com/ESP32-S3-Touch-LCD-7">Product documentation</a>
     </td>
   </tr>
+  <tr>
+    <td align="center" valign="middle" width="180">
+      <a href="https://docs.waveshare.com/ESP32-S3-LR1121-OLED-1.54">
+        <img src="https://raw.githubusercontent.com/waveshareteam/esp32-s3-lr1121-oled-1.54/main/assets/ESP32-S3-LR1121-OLED-1.54-DocHeader-1.webp"
+        alt="ESP32-S3-LR1121-OLED-1.54-XF development board"
+        width="160">
+      </a>
+    </td>
+    <td valign="middle" width="600">
+      <p><strong>ESP32-S3-LR1121-OLED-1.54-XF</strong></p>
+      <a href="boards/esp32_s3_lr1121_oled_1_54_xf/">Board definition</a> · <a href="https://docs.waveshare.com/ESP32-S3-LR1121-OLED-1.54">Product documentation</a>
+    </td>
+  </tr>
 </table>
 
 <details>
@@ -80,6 +93,7 @@ such as `spi_sd` describe a bus; they do not imply a complete storage applicatio
 <!-- BEGIN SUPPORTED_BOARDS -->
 | Board | Chip | Device definitions | Peripheral definitions |
 | --- | --- | --- | --- |
+| [`esp32_s3_lr1121_oled_1_54_xf`](boards/esp32_s3_lr1121_oled_1_54_xf/) | ESP32-S3 | `button_boot`, `button_power`, `button_menu`, `button_ptt`, `button_rtc_irq`, `radio`, `oled`, `rtc`, `battery`, `audio`, `sdcard` | `i2c_main`, `spi_radio`, `gpio_boot`, `gpio_power`, `gpio_menu`, `gpio_ptt`, `gpio_rtc_irq`, `gpio_amplifier`, `gpio_radio_cs`, `gpio_radio_irq`, `gpio_radio_reset`, `gpio_radio_busy`, `i2s_speaker`, `i2s_microphone` |
 | [`esp32_s3_touch_amoled_1_75c`](boards/esp32_s3_touch_amoled_1_75c/) | ESP32-S3 | `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
 | [`esp32_s3_touch_amoled_1_8`](boards/esp32_s3_touch_amoled_1_8/) | ESP32-S3 | `gpio_expander`, `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch`, `fs_sdcard` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
 | [`esp32_s3_touch_amoled_2_16`](boards/esp32_s3_touch_amoled_2_16/) | ESP32-S3 | `axp2101_power_manager`, `audio_dac`, `audio_adc`, `display_lcd`, `lcd_touch`, `fs_sdcard` | `i2c_master`, `i2s_audio_out`, `i2s_audio_in`, `gpio_pa_control`, `spi_display` |
@@ -91,6 +105,9 @@ such as `spi_sd` describe a bus; they do not imply a complete storage applicatio
 Definitions live under `boards/<full_model>/`. The three AMOLED profiles come
 from Espressif Brookesia; see [board revisions and migration notes](docs/BOARDS.md).
 CI validates generation and compilation; physical operation requires board testing.
+
+The LR1121 OLED XF profile provides hardware definitions and requires application-side
+custom device adapters; see [its support scope](docs/BOARDS.md#lr1121-oled-154-xf-definition-scope).
 
 <a id="quick-start"></a>
 

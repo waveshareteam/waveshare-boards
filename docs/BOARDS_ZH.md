@@ -9,6 +9,7 @@
 
 ```text
 boards/
+  esp32_s3_lr1121_oled_1_54_xf/
   esp32_s3_touch_lcd_7/
   esp32_s3_touch_amoled_1_75c/
   esp32_s3_touch_amoled_1_8/
@@ -26,6 +27,26 @@ boards/
 托管安装与覆盖依赖从包根目录开始扫描，但仓库结构也必须兼容本地克隆。
 `_boards` 后缀能够通过该版本对覆盖依赖名称的筛选，无需修改上级组件或传入 customer-path 参数。
 依据见固定版本的[扫描实现](https://github.com/espressif/esp-board-manager/blob/2beb9b22b0892b343bd555a1ebc9929a7edce8fc/generators/config_generator.py)。
+
+## LR1121 OLED 1.54 XF 定义范围
+
+`esp32_s3_lr1121_oled_1_54_xf` 的三份 YAML 来自
+[产品出厂示例源码中的板卡配置](https://github.com/waveshareteam/esp32-s3-lr1121-oled-1.54/tree/a0bf73932ef06d047810b17888cc7e33f064680e/firmware/12_factory_demo/components/esp32_s3_lr1121_oled_1_54_support/boards/esp32_s3_lr1121_oled_1_54_xf)，保留原有硬件参数。
+对应硬件资料为产品仓库中的[原理图](https://github.com/waveshareteam/esp32-s3-lr1121-oled-1.54/blob/a0bf73932ef06d047810b17888cc7e33f064680e/hardware/schematics/esp32-s3-lr1121-oled-1_54_schematics.pdf)。
+配置描述 ESP32-S3 GPIO、共用 I2C、LR1121 SPI、扬声器与麦克风 I2S、按键和单线 SDMMC。
+
+本次提供硬件定义，所有设备保留 `init_skip: true`，由应用按需初始化。
+`radio`、`oled`、`rtc`、`battery` 和 `audio` 为自定义设备；本组件包未包含这些设备的
+初始化回调、产品适配代码或托管驱动依赖。应用必须提供并注册适配代码，再按名称初始化设备。
+仅调用 `esp_board_manager_init()` 不会使这些设备可用。
+按键和 SD 使用 Board Manager 内置设备类型，同样需要显式初始化；SD 挂载失败不会自动格式化。
+
+无线适配代码还需初始化单独声明的 `gpio_radio_busy`，它不在自定义 radio 的四项外设列表中。
+音频默认使用 16 kHz、STD 扬声器输出与四时隙 TDM 麦克风输入；对讲机的 8 kHz 采集等应用配置
+需另行设置。产品工程采用发布后的板卡定义时，应移除应用中重复的板卡 YAML，同时保留所需适配代码。
+
+生成与编译检查不验证设备初始化、共用 I2S 工作情况、射频设置、电源行为或实际接线。
+本次导入尚未进行实机测试；声明完整产品支持前，需核对具体 PCB 版本并分别验证这些功能。
 
 ## 导入来源与适配
 

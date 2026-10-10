@@ -9,6 +9,7 @@ is `waveshare/waveshare_boards`. Keep all definitions in:
 
 ```text
 boards/
+  esp32_s3_lr1121_oled_1_54_xf/
   esp32_s3_touch_lcd_7/
   esp32_s3_touch_amoled_1_75c/
   esp32_s3_touch_amoled_1_8/
@@ -29,6 +30,35 @@ but the layout must also work for local clones. The underscore suffix `_boards`
 passes this version's override-dependency name filter. No upstream patch or
 customer-path argument is needed. See the pinned
 [discovery implementation](https://github.com/espressif/esp-board-manager/blob/2beb9b22b0892b343bd555a1ebc9929a7edce8fc/generators/config_generator.py).
+
+## LR1121 OLED 1.54 XF definition scope
+
+`esp32_s3_lr1121_oled_1_54_xf` imports the three YAML files from the
+[product's factory-source profile](https://github.com/waveshareteam/esp32-s3-lr1121-oled-1.54/tree/a0bf73932ef06d047810b17888cc7e33f064680e/firmware/12_factory_demo/components/esp32_s3_lr1121_oled_1_54_support/boards/esp32_s3_lr1121_oled_1_54_xf) without changing its hardware values.
+The hardware reference is the product repository's [schematic](https://github.com/waveshareteam/esp32-s3-lr1121-oled-1.54/blob/a0bf73932ef06d047810b17888cc7e33f064680e/hardware/schematics/esp32-s3-lr1121-oled-1_54_schematics.pdf).
+The profile describes ESP32-S3 GPIOs, shared I2C, LR1121 SPI, speaker/microphone
+I2S, buttons and one-bit SDMMC.
+
+This is a hardware-definition profile. All devices retain `init_skip: true` for
+application-controlled initialization. `radio`, `oled`, `rtc`, `battery` and
+`audio` are custom devices; this pack does not include their initialization
+callbacks, product adapters or managed driver dependencies. Applications must
+supply and register those adapters before initializing the devices by name.
+Calling `esp_board_manager_init()` alone does not make these devices usable.
+Buttons and SD use built-in Board Manager device types and also require explicit
+initialization. SD mount failure does not automatically format the card.
+
+The radio adapter must also initialize the separately declared `gpio_radio_busy`;
+it is not in the custom radio's four-entry peripheral list. The audio defaults
+are 16 kHz with STD speaker output and four-slot TDM microphone input. Application
+profiles such as the walkie-talkie's 8 kHz capture need their own configuration.
+When adopting this published profile, remove duplicate application-local board
+YAML definitions while retaining the required product adapters.
+
+Generation and compilation checks do not validate device initialization, shared
+I2S operation, RF settings, power behavior or physical wiring. Hardware testing
+has not been performed for this import; verify the exact PCB revision and those
+functions separately before claiming complete product support.
 
 ## Imported source and adaptations
 
